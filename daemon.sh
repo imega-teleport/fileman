@@ -8,10 +8,12 @@ do
     UUID=`echo $(basename "$DEST")`
     case "$SERVICE" in
         "zip")
-            rsync --inplace -av $DEST$FILE rsync://extractor:873/data/$UUID/
+            UUID=`echo $(basename "$DEST")`
+            mkdir -p /data/parse/$UUID
+            unzip $DEST$FILE -d /data/parse/$UUID
         ;;
         "parse")
-            rsync --inplace -av $DEST$FILE rsync://parser:873/data/$UUID/
+            echo parse111
         ;;
     esac
 done
