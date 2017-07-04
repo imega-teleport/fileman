@@ -13,7 +13,7 @@ do
             unzip $DEST$FILE -d /data/parse/$UUID
         ;;
         "parse")
-            echo parse111
+            echo /data/parse/$UUID/$FILE
         ;;
     esac
 done
