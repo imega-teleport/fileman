@@ -16,7 +16,7 @@ do
             xml2db --db teleport --file /data/parse/$UUID/$FILE
             mkdir -p /tmp/$UUID
             db2file --db teleport --path /tmp/$UUID
-            #rsync --inplace -av /tmp/$UUID rsync://storage:873/storage
+            rsync --inplace -av /tmp/$UUID rsync://storage:873/storage
             rm -rf /tmp/$UUID
         ;;
     esac
