@@ -10,7 +10,7 @@ do
         "zip")
             UUID=`echo $(basename "$DEST")`
             mkdir -p /data/parse/$UUID
-            unzip $DEST$FILE -d /data/parse/$UUID
+            unzip -o $DEST$FILE -d /data/parse/$UUID
         ;;
         "parse")
             xml2db --db teleport --file /data/parse/$UUID/$FILE
