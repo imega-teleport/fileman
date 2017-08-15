@@ -6,6 +6,7 @@ COPY build/ /usr/local/sbin
 COPY rsyncd.conf /etc/rsyncd.conf
 COPY daemon.sh /app/daemon.sh
 COPY wait-list.txt /app/wait-list.txt
+COPY schema.sql /app/schema.sql
 
 RUN apk --upd --no-cache add rsync inotify-tools unzip mariadb-client
 
