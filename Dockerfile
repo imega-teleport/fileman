@@ -7,6 +7,6 @@ COPY rsyncd.conf /etc/rsyncd.conf
 COPY daemon.sh /app/daemon.sh
 COPY wait-list.txt /app/wait-list.txt
 
-RUN apk --upd --no-cache add rsync inotify-tools unzip
+RUN apk --upd --no-cache add rsync inotify-tools unzip mariadb-client
 
 CMD ["/app/daemon.sh"]

@@ -13,9 +13,11 @@ do
             unzip -o $DEST$FILE -d /data/parse/$UUID
         ;;
         "parse")
-            xml2db --db teleport --file /data/parse/$UUID/$FILE
+            mysql --host=$DB_HOST -e "CREATE DATABASE IF NOT EXISTS $UUID CHARACTER SET utf8 COLLATE utf8_general_ci;"
+            xml2db --db $UUID --file /data/parse/$UUID/$FILE
             mkdir -p /tmp/$UUID
-            db2file --db teleport --path /tmp/$UUID
+            db2file --db $UUID --path /tmp/$UUID
+            mysql --host=$DB_HOST -e "DROP DATABASE IF EXISTS $UUID CHARACTER SET utf8 COLLATE utf8_general_ci;"
             rsync --inplace -av /tmp/$UUID rsync://storage:873/storage
             rm -rf /tmp/$UUID
         ;;
