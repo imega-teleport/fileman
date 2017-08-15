@@ -15,11 +15,12 @@ do
         "parse")
             myhost=$(echo $DB_HOST | cut -d ':' -f1)
             myport=$(echo $DB_HOST | cut -d ':' -f2)
-            mysql --host=$myhost --port=$myport -e "CREATE DATABASE IF NOT EXISTS $UUID CHARACTER SET utf8 COLLATE utf8_general_ci;"
-            xml2db --db $UUID --file /data/parse/$UUID/$FILE
+            name=$(echo $UUID | sed -e "s/-/_/g")
+            mysql --host=$myhost --port=$myport -e "CREATE DATABASE IF NOT EXISTS $name CHARACTER SET utf8 COLLATE utf8_general_ci;"
+            xml2db --db $name --file /data/parse/$UUID/$FILE
             mkdir -p /tmp/$UUID
-            db2file --db $UUID --path /tmp/$UUID
-            mysql --host=$myhost --port=$myport -e "DROP DATABASE IF EXISTS $UUID CHARACTER SET utf8 COLLATE utf8_general_ci;"
+            db2file --db $name --path /tmp/$UUID
+            mysql --host=$myhost --port=$myport -e "DROP DATABASE IF EXISTS $name;"
             rsync --inplace -av /tmp/$UUID rsync://storage:873/storage
             rm -rf /tmp/$UUID
         ;;
