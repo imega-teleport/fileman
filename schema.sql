@@ -1,3 +1,9 @@
+DROP TABLE IF EXISTS tasks;
+CREATE TABLE tasks (
+    name CHAR(5) NOT NULL,
+    val  SMALLINT(2)
+);
+
 DROP TABLE IF EXISTS groups;
 CREATE TABLE groups (
   id        VARCHAR(80) NOT NULL,

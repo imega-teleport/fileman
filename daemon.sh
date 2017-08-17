@@ -19,10 +19,15 @@ do
             mysql --host=$myhost --port=$myport -e "CREATE DATABASE IF NOT EXISTS $name CHARACTER SET utf8 COLLATE utf8_general_ci;"
             mysql --host=$myhost --port=$myport --database=$name -e "source /app/schema.sql;"
             xml2db --db $name --file /data/parse/$UUID/$FILE
+
             mkdir -p /tmp/$UUID
             db2file --db $name --path /tmp/$UUID
-            mysql --host=$myhost --port=$myport -e "DROP DATABASE IF EXISTS $name;"
-            rsync --inplace -av /tmp/$UUID rsync://storage:873/storage
+            COMPLETE=$?
+            if [ $COMPLETE -eq 0 ];then
+                mysql --host=$myhost --port=$myport -e "DROP DATABASE IF EXISTS $name;"
+                rsync --inplace -av /tmp/$UUID rsync://storage:873/storage
+            fi
+
             rm -rf /tmp/$UUID
         ;;
     esac
