@@ -1,27 +1,23 @@
-DROP TABLE IF EXISTS tasks;
-CREATE TABLE tasks (
+CREATE TABLE IF NOT EXISTS tasks (
     name CHAR(5) NOT NULL,
     val  SMALLINT(2)
 );
 
-DROP TABLE IF EXISTS groups;
-CREATE TABLE groups (
+CREATE TABLE IF NOT EXISTS groups (
   id        VARCHAR(80) NOT NULL,
   parent_id VARCHAR(80),
   name      VARCHAR(3000),
   KEY record(id, parent_id)
 );
 
-DROP TABLE IF EXISTS properties;
-CREATE TABLE properties (
+CREATE TABLE IF NOT EXISTS properties (
   id   VARCHAR(80) NOT NULL,
   name VARCHAR(3000),
   type VARCHAR(3000),
   KEY record(id)
 );
 
-DROP TABLE IF EXISTS products;
-CREATE TABLE products (
+CREATE TABLE IF NOT EXISTS products (
   id          VARCHAR(80) NOT NULL,
   name        VARCHAR(3000),
   description TEXT,
@@ -33,32 +29,28 @@ CREATE TABLE products (
   KEY record(id)
 );
 
-DROP TABLE IF EXISTS products_properties;
-CREATE TABLE products_properties (
+CREATE TABLE IF NOT EXISTS products_properties (
   parent_id VARCHAR(80) NOT NULL,
   id        VARCHAR(80) NOT NULL,
   value     VARCHAR(250),
   KEY record(parent_id, id)
 );
 
-DROP TABLE IF EXISTS products_taxes;
-CREATE TABLE products_taxes (
+CREATE TABLE IF NOT EXISTS products_taxes (
   parent_id VARCHAR(80) NOT NULL,
   name      VARCHAR(80),
   rate      VARCHAR(20),
   KEY record(parent_id)
 );
 
-DROP TABLE IF EXISTS products_requisites;
-CREATE TABLE products_requisites (
+CREATE TABLE IF NOT EXISTS products_requisites (
   parent_id VARCHAR(80) NOT NULL,
   name      VARCHAR(250),
   value     VARCHAR(250),
   KEY record(parent_id)
 );
 
-DROP TABLE IF EXISTS products_excises;
-CREATE TABLE products_excises (
+CREATE TABLE IF NOT EXISTS products_excises (
   parent_id VARCHAR(80) NOT NULL,
   name      VARCHAR(250),
   sum       FLOAT,
@@ -66,22 +58,19 @@ CREATE TABLE products_excises (
   KEY record(parent_id)
 );
 
-DROP TABLE IF EXISTS products_images;
-CREATE TABLE products_images (
+CREATE TABLE IF NOT EXISTS products_images (
   parent_id VARCHAR(80) NOT NULL,
   url       VARCHAR(250),
   KEY record(parent_id)
 );
 
-DROP TABLE IF EXISTS products_groups;
-CREATE TABLE products_groups (
+CREATE TABLE IF NOT EXISTS products_groups (
   parent_id VARCHAR(80) NOT NULL,
   id        VARCHAR(80) NOT NULL,
   KEY record(parent_id)
 );
 
-DROP TABLE IF EXISTS products_contractor;
-CREATE TABLE products_contractor (
+CREATE TABLE IF NOT EXISTS products_contractor (
   parent_id VARCHAR(80) NOT NULL,
   id        VARCHAR(80) NOT NULL,
   name      VARCHAR(250),
@@ -90,8 +79,7 @@ CREATE TABLE products_contractor (
   KEY record(parent_id, id)
 );
 
-DROP TABLE IF EXISTS products_component;
-CREATE TABLE products_component (
+CREATE TABLE IF NOT EXISTS products_component (
   parent_id     VARCHAR(80) NOT NULL,
   catalog_id    VARCHAR(80) NOT NULL,
   classifier_id VARCHAR(80) NOT NULL,
@@ -99,8 +87,7 @@ CREATE TABLE products_component (
   KEY record(parent_id)
 );
 
-DROP TABLE IF EXISTS bundling;
-CREATE TABLE bundling (
+CREATE TABLE IF NOT EXISTS bundling (
   id            VARCHAR(80) NOT NULL,
   name          VARCHAR(3000),
   catalog_id    VARCHAR(80),
@@ -108,8 +95,7 @@ CREATE TABLE bundling (
   KEY record(id)
 );
 
-DROP TABLE IF EXISTS bundling_offers;
-CREATE TABLE bundling_offers (
+CREATE TABLE IF NOT EXISTS bundling_offers (
   parent_id        VARCHAR(80) NOT NULL,
   id               VARCHAR(80) NOT NULL,
   name             VARCHAR(3000),
@@ -121,14 +107,12 @@ CREATE TABLE bundling_offers (
   KEY record(parent_id, id)
 );
 
-DROP TABLE IF EXISTS bundling_prices_types;
-CREATE TABLE bundling_prices_types (
+CREATE TABLE IF NOT EXISTS bundling_prices_types (
   parent_id VARCHAR(80) NOT NULL,
   KEY record(parent_id)
 );
 
-DROP TABLE IF EXISTS bundling_offers_prices;
-CREATE TABLE bundling_offers_prices (
+CREATE TABLE IF NOT EXISTS bundling_offers_prices (
   parent_id     VARCHAR(80) NOT NULL,
   display       VARCHAR(200),
   price_type_id VARCHAR(80) NOT NULL,
