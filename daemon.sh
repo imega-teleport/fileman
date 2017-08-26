@@ -32,7 +32,6 @@ do
                 find /tmp/$UUID -name '*.sql' | while read FILE; do mv "$FILE" $(echo "$FILE" | sed "s/\.sql$/_$QTY.sql/g"); done
 
                 mysql --host=$myhost --port=$myport -e "DROP DATABASE IF EXISTS $name;"
-
                 rsync --inplace -av /tmp/$UUID rsync://storage:873/storage
             fi
 
