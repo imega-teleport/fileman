@@ -65,8 +65,8 @@ CREATE TABLE IF NOT EXISTS products_images (
 );
 
 CREATE TABLE IF NOT EXISTS products_groups (
-  parent_id VARCHAR(80) NOT NULL,
-  id        VARCHAR(80) NOT NULL,
+  product_id VARCHAR(80) NOT NULL,
+  group_id   VARCHAR(80) NOT NULL,
   KEY record(parent_id)
 );
 
