@@ -5,7 +5,7 @@ build: test
 		-e GOARCH=amd64 \
 		-e CGO_ENABLED=0 \
 		golang:1.8-alpine \
-		sh -c 'apk --upd add git && go get -u github.com/imega-teleport/gorun && go get -u github.com/imega-teleport/xml2db'
+		sh -c 'apk --upd add git && go get -u github.com/imega-teleport/db2file && go get -u github.com/imega-teleport/xml2db'
 	@docker build -t imegateleport/fileman .
 
 release:

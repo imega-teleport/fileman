@@ -24,7 +24,7 @@ do
             mkdir -p /tmp/$UUID/sec
             mkdir -p /tmp/$UUID/thi
 
-            gorun -db $name -path /tmp/$UUID -limit 500000 -pfile "out" -ptable "wp_"
+            db2file -db $name -path /tmp/$UUID -limit 500000 -pfile "out" -ptable "wp_"
             COMPLETE=$?
             if [ $COMPLETE -eq 0 ];then
                 QTY=`find /tmp/$UUID -name '*.sql' | wc -l`
