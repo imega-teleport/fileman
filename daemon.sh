@@ -29,8 +29,8 @@ do
             if [ $COMPLETE -eq 0 ];then
                 QTY=`find /tmp/$UUID -name '*.sql' | wc -l`
 
-                find /tmp/$UUID/sec -name '*.sql' | while read FILE; do mv "$FILE" "$(echo "$FILE" | sed 's/sec\/out/sec_out/g')"; done
-                find /tmp/$UUID/thi -name '*.sql' | while read FILE; do mv "$FILE" "$(echo "$FILE" | sed 's/thi\/out/thi_out/g')"; done
+                find /tmp/$UUID/sec -name '*.sql' | while read FILE; do mv "$FILE" "$(echo "$FILE" | sed 's/sec\/out/secout/g')"; done
+                find /tmp/$UUID/thi -name '*.sql' | while read FILE; do mv "$FILE" "$(echo "$FILE" | sed 's/thi\/out/thiout/g')"; done
                 find /tmp/$UUID -name '*.sql' | while read FILE; do mv "$FILE" $(echo "$FILE" | sed "s/\.sql$/_$QTY.sql/g"); done
 
                 mysql --host=$myhost --port=$myport -e "DROP DATABASE IF EXISTS $name;"
