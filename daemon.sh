@@ -13,16 +13,20 @@ do
             unzip -o $DEST$FILE -d /data/parse/$UUID
         ;;
         "parse")
+            mkdir -p /tmp/$UUID
+            mkdir -p /tmp/$UUID/sec
+            mkdir -p /tmp/$UUID/thi
+
+            if [ -d "/data/parse/$UUID/import_files" ]; then
+                mv /data/parse/$UUID/import_files /tmp/$UUID/
+            fi
+
             myhost=$(echo $DB_HOST | cut -d ':' -f1)
             myport=$(echo $DB_HOST | cut -d ':' -f2)
             name=$(echo $UUID | sed -e "s/-/_/g")
             mysql --host=$myhost --port=$myport -e "CREATE DATABASE IF NOT EXISTS $name CHARACTER SET utf8 COLLATE utf8_general_ci;"
             mysql --host=$myhost --port=$myport --database=$name -e "source /app/schema.sql;"
             xml2db -db $name -file /data/parse/$UUID/$FILE
-
-            mkdir -p /tmp/$UUID
-            mkdir -p /tmp/$UUID/sec
-            mkdir -p /tmp/$UUID/thi
 
             db2file -db $name -path /tmp/$UUID -limit 500000 -pfile "out" -ptable "wp_"
             COMPLETE=$?
