@@ -58,10 +58,11 @@ CREATE TABLE IF NOT EXISTS products_excises (
   KEY record(parent_id)
 );
 
-CREATE TABLE IF NOT EXISTS products_images (
+CREATE TABLE products_images (
   parent_id VARCHAR(80) NOT NULL,
+  entity_id SMALLINT UNSIGNED DEFAULT 0,
   url       VARCHAR(250),
-  KEY record(parent_id)
+  PRIMARY KEY record(parent_id, entity_id)
 );
 
 CREATE TABLE IF NOT EXISTS products_groups (
